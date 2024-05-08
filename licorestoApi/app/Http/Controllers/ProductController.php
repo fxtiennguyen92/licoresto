@@ -26,7 +26,7 @@ class ProductController extends Controller
         // Validate request
         $validator = $this->validateRequest($request->all());
         if ($validator->fails()) {
-            return response($validator->errors()->all(), HttpStatusCode::BAD_REQUEST);
+            return response($validator->errors(), HttpStatusCode::BAD_REQUEST);
         }
 
         try {
@@ -56,6 +56,7 @@ class ProductController extends Controller
 
             // Save
             $product->save();
+            return response($product, HttpStatusCode::OK);
 
         } catch (\Exception $e) {
             return response($e->getMessage(), HttpStatusCode::INTERNAL_SERVER_ERROR);
