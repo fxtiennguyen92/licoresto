@@ -16,9 +16,8 @@ return new class extends Migration
             $table->string('code', 20)->unique();
             $table->string('name', 150);
             $table->string('image')->nullable();
-            $table->boolean('publish_flg')->default(false);
+            $table->boolean('published_flg')->default(false);
             $table->foreignUuid('created_by');
-            $table->foreignUuid('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
